@@ -8,5 +8,7 @@ class IndexController extends ControllerBase
         echo "<h1>Hello world!</h1>";
     }
 
+
+
 }
 

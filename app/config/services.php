@@ -7,6 +7,7 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
+use Phalcon\Config;;
 
 /**
  * Shared configuration service
@@ -109,4 +110,16 @@ $di->setShared('session', function () {
     $session->start();
 
     return $session;
+});
+
+$di->setShared('collectionManager', function(){
+    return new Phalcon\Mvc\Collection\Manager();
+});
+
+$config = include APP_PATH . "/config/config.php";
+$di->setShared('mongo', function () use ($config){
+    $mongo = new MongoClient(sprintf('mongodb://%s:%s', $config->mongodb->host, $config->mongodb->port));
+    return $mongo->selectDB("app_store");
+    // $mongo = new MongoClient("mongodb://localhost");
+    // return $mongo->selectDB('test');
 });

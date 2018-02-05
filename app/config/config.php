@@ -30,5 +30,11 @@ return new \Phalcon\Config([
         // possibly if the web server rewrite rules are changed. This can also be set to a static path.
         'baseUri'        => preg_replace('/public([\/\\\\])index.php$/', '', $_SERVER["PHP_SELF"]),
         //'baseUri'         => '/'
-    ]
+    ],
+    'mongodb' => array(
+        'host'        => '192.168.10.10',
+        'port'        => '27017',
+        'username'    => '',
+        'password'    => '',
+    ),
 ]);
