@@ -13,12 +13,14 @@ class RedisDriver implements Driver
 
     public function enqueue($queuename, $message)
     {
-        // TODO: Implement enqueue() method.
+        $this->redis->rpush($queuename, $message);
+
     }
 
     public function dequeue($queuename)
     {
-        // TODO: Implement dequeue() method.
+        $this->redis->lpop($queuename);
+
     }
 
 }
